@@ -483,3 +483,15 @@ oc delete oauthclient --selector app=jupyterhub
 ```
 
 If there is more than one resource matching the label selector, delete by name the one corresponding to the project you created the deployment in. The project name will be part of the resource name.
+
+Changes made in this fork
+-------------------------
+
+Versions changed in requirements.txt:
+- kubernetes 9.0.1 -> 10.0
+- jupyterhub 1.0.0 -> 1.4.1
+- oauthenticator 0.9.0 -> 14.0.0
+
+Packages added to requirements.txt:
+- jupyterhub-firstuseauthenticator (v0.14.1)
+- jupyterhub-nativeauthenticator (v0.0.7)
