@@ -11,3 +11,4 @@ openshift==0.10.0
 wrapt==1.11.2
 jupyterhub-firstuseauthenticator==0.14.1
 jupyterhub-nativeauthenticator==0.0.7
+cdsdashboards==0.4.0
