@@ -275,3 +275,19 @@ environ_config_file = '/opt/app-root/configs/jupyterhub_config.py'
 if os.path.exists(environ_config_file):
     with open(environ_config_file) as fp:
         exec(compile(fp.read(), environ_config_file, 'exec'), globals())
+
+from cdsdashboards.hubextension import cds_extra_handlers
+c.JupyterHub.extra_handlers = cds_extra_handlers
+
+from cdsdashboards.app import CDS_TEMPLATE_PATHS
+c.JupyterHub.template_paths = CDS_TEMPLATE_PATHS
+
+c.JupyterHub.spawner_class = 'cdsdashboards.hubextension.spawners.variablekube.VariableKubeSpawner'
+c.CDSDashboardsConfig.builder_class = 'cdsdashboards.builder.kubebuilder.KubeBuilder'
+c.JupyterHub.allow_named_servers = True
+c.JupyterHub.named_server_limit_per_user = 3
+c.DockerSpawner.name_template = "{prefix}-{username}-{servername}"
+c.CDSDashboardsConfig.conda_envs = ['solar-mach']
+c.CDSDashboardsConfig.spawn_as_viewer = True
+#c.KernelSpecManager.ensure_native_kernel = False
+#c.KernelSpecManager.allowed_kernelspecs = {'python3', 'serpentine', 'solar-mach'}

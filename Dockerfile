@@ -5,6 +5,8 @@ LABEL io.k8s.display-name="JupyterHub" \
       io.openshift.tags="builder,python,jupyterhub" \
       io.openshift.s2i.scripts-url="image:///opt/app-root/builder"
 
+ARG CDSVERSION=0.4.0
+
 USER root
 
 COPY . /tmp/src
@@ -14,6 +16,9 @@ RUN rm -rf /tmp/src/.git* && \
     chgrp -R 0 /tmp/src && \
     chmod -R g+w /tmp/src && \
     mv /tmp/src/.s2i/bin /tmp/scripts
+
+RUN pip install --upgrade pip
+RUN python3 -m pip install --upgrade cdsdashboards>=$CDSVERSION
 
 USER 1001
 
